@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Simple Web Page</title>
+</head>
+<body>
+
+  hello
+
+  <div id="app"></div>
+
+  <script src="./index.js"></script>
+  <script>
+    const { createComponent } = window.uiLibrary;
+
+    function template(state) {
+      return (
+        <div>
+          <h1>{state.count}</h1>
+          <button onclick={handleClick}>Add</button>
+        </div>
+      );
+    }
+
+    function mountedCallback() {
+      console.log('Component mounted');
+    }
+
+    function handleClick() {
+      component.updateState({ count: component.state.count + 1 });
+    }
+
+    const initialState = { count: 0 };
+    const component = createComponent(template, initialState, mountedCallback);
+  </script>
+
+</body>
+</html>
